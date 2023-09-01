@@ -1,0 +1,51 @@
+<h1> This is details page </h1>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="section">
+    {% if error %}
+    {{ error }}
+{% else %}
+    <div class="container">
+        <div class="row justify-content-centre">
+            <div class="col-md-10">
+                <div class="card">
+                     <div class="card-header">
+                        <a href="{% url 'home' %}"> Go To Home </a>
+                        <h1 class="fw-bold"> Employee  Details </h1>
+                     </div>
+                     <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                   
+                                    <th> DOB </th>
+                                    <th> DEPARTMENT </th>
+                                    <th> EXPERIENCE </th>
+                                    <th> SALARY </th>
+                                    <th> SHIFT </th>
+
+                                </tr>
+                                <tbody>
+                                    <tr>
+                                    <td> {{display.dob}} </td>
+                                    {% for x in display.works.all %}
+                                    <td> {{x.dept}} </td>
+                                    <td> {{x.experience}} </td>
+                                    {% for x in display.salary.all %}
+                                    <td> {{x.amount }} </td>
+                                    <td> {{x.shift }} </td>
+                                    </tr>
+                                    {% endfor %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       {% endif %}
+       {% endblock %}
+   </section>

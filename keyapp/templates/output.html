@@ -1,0 +1,45 @@
+<h1> registration successfull !! </h1>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="section">
+    {% if error %}
+    {{ error }}
+{% else %}
+    <div class="container">
+        <div class="row justify-content-centre">
+            <div class="col-md-10">
+                <div class="card">
+                     <div class="card-header">
+                        <h1 class="fw-bold"> Application Form Details </h1>
+                     </div>
+                     <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>REGISTER NUMBER</th>
+                                    <th>NAME</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                {% for x in display %}
+                                <td> {{x.reg_no}} </td>
+                                <td> {{x.name}} </td>
+                                <td><button class="btn btn-primary">
+                                    <a href="{% url 'output' employee_id=x.id %}" style="color: black;">Download Database</a>
+                                </button></td> 
+                                </tr>
+                                {% endfor %}
+                            
+                            </tbody>
+                        </table>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endblock %}
+</section>
